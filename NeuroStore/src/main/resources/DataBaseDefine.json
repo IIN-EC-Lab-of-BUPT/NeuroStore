@@ -1,0 +1,1474 @@
+{"TempTables":
+[
+  {
+    "CLASS":"电脑",
+    "*IPAddress": "CHAR(15)",
+    "Hostname": "CHAR(60)",
+    "OS":"CHAR(60)",
+    "COMMENT": {
+      "CLASS":"电脑",
+      "*IPAddress": "CHAR(15)",
+      "Hostname": "CHAR(60)",
+      "OS":"CHAR(60)"
+    }
+  },
+  {
+    "CLASS":"放大器",
+    "*Name":"CHAR(60)",
+    "COMMENT": {
+      "CLASS":"放大器",
+      "*Name":"CHAR(60)"
+    }
+  },
+  {
+    "CLASS":"无人机",
+    "*Name":"CHAR(60)",
+    "COMMENT": {
+      "CLASS":"无人机",
+      "*Name":"CHAR(60)"
+    }
+  },
+  {
+    "CLASS":"操作员",
+    "*ID": "BIGINT",
+    "Name":"CHAR(60)",
+    "Birthday":"DATE",
+    "job":"CHAR(60)",
+    "COMMENT": {
+      "CLASS":"操作员",
+      "*ID": "BIGINT",
+      "Name":"CHAR(60)",
+      "Birthday":"DATE",
+      "job":"CHAR(60)"
+    }
+  },
+  {
+    "CLASS":"图片",
+    "*UUID":"CHAR(36)",
+    "UUID@可疑目标识别trial": "CHAR(36)",
+    "Name@无人机":"CHAR(60)",
+    "Name": "CHAR(10)",
+    "Time":"BIGINT",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS":"图片",
+      "*UUID":"CHAR(36)",
+      "UUID@可疑目标识别trial": "CHAR(36)",
+      "Name@无人机":"CHAR(60)",
+      "Name": "CHAR(10)",
+      "Time":"BIGINT",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS": "无人机状态",
+    "*UUID": "CHAR(36)",
+    "Name@无人机": "CHAR(60)",
+    "StartTime": "BIGINT",
+    "EndTime": "BIGINT",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS": "无人机状态",
+      "*UUID": "CHAR(36)",
+      "Name@无人机": "CHAR(60)",
+      "StartTime": "BIGINT",
+      "EndTime": "BIGINT",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS":"EEG数据",
+    "*UUID":"CHAR(36)",
+    "UUID@可疑目标识别trial": "CHAR(36)",
+    "UUID@目标判别trial": "CHAR(36)",
+    "Name@放大器":"CHAR(60)",
+    "StartTime": "BIGINT",
+    "EndTime":"BIGINT",
+    "SampleFrequency":"INT",
+    "RowNum":"INT",
+    "ClumnNum":"INT",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS":"EEG数据",
+      "*UUID":"CHAR(36)",
+      "UUID@可疑目标识别trial": "CHAR(36)",
+      "UUID@目标判别trial": "CHAR(36)",
+      "Name@放大器":"CHAR(60)",
+      "StartTime": "BIGINT",
+      "EndTime":"BIGINT",
+      "SampleFrequency":"INT",
+      "RowNum":"INT",
+      "ClumnNum":"INT",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS":"眼动数据",
+    "*UUID":"CHAR(36)",
+    "UUID@可疑目标识别trial": "CHAR(36)",
+    "UUID@目标判别trial": "CHAR(36)",
+    "Name@放大器":"CHAR(60)",
+    "StartTime": "BIGINT",
+    "EndTime":"BIGINT",
+    "SampleFrequency":"INT",
+    "RowNum":"INT",
+    "ClumnNum":"INT",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS":"眼动数据",
+      "*UUID":"CHAR(36)",
+      "UUID@可疑目标识别trial": "CHAR(36)",
+      "UUID@目标判别trial": "CHAR(36)",
+      "StartTime": "BIGINT",
+      "EndTime":"BIGINT",
+      "SampleFrequency":"INT",
+      "RowNum":"INT",
+      "ClumnNum":"INT",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS":"巡逻",
+    "*Name":"CHAR(60)",
+    "StartTime": "BIGINT",
+    "EndTime": "BIGINT",
+    "COMMENT": {
+      "CLASS":"巡逻",
+      "*Name":"CHAR(60)",
+      "StartTime": "BIGINT",
+      "EndTime": "BIGINT"
+    }
+  },
+  {
+    "CLASS":"脑电判别Block",
+    "*UUID":"CHAR(36)",
+    "Name@巡逻":"INT",
+    "Name":"CHAR(60)",
+    "Name@范式": "CHAR(60)",
+    "StartTime": "BIGINT",
+    "EndTime": "BIGINT",
+    "COMMENT": {
+      "CLASS":"脑电判别Block",
+      "*UUID":"CHAR(36)",
+      "ID@巡逻":"INT",
+      "Name":"CHAR(60)",
+      "Name@范式": "CHAR(60)",
+      "StartTime": "BIGINT",
+      "EndTime": "BIGINT"
+    }
+  },
+  {
+    "CLASS":"可疑目标识别trial",
+    "*UUID":"CHAR(36)",
+    "UUID@脑电判别Block":"CHAR(36)",
+    "Result": "VARCHAR(300)",
+    "StartTime": "BIGINT",
+    "EndTime": "BIGINT",
+    "COMMENT": {
+      "CLASS":"可疑目标识别trial",
+      "*UUID":"VARCHAR(300)",
+      "UUID@脑电判别Block":"CHAR(36)",
+      "Result": "CHAR(36)",
+      "StartTime": "BIGINT",
+      "EndTime": "BIGINT"
+    }
+  },
+  {
+    "CLASS": "目标判别trial",
+    "*UUID":"CHAR(36)",
+    "UUID@脑电判别Block":"CHAR(36)",
+    "UUID@图片":"CHAR(36)",
+    "Result": "VARCHAR(300)",
+    "StartTime": "BIGINT",
+    "EndTime": "BIGINT",
+    "COMMENT": {
+      "CLASS": "目标判别trial",
+      "*UUID":"CHAR(36)",
+      "UUID@脑电判别Block":"CHAR(36)",
+      "UUID@图片":"CHAR(36)",
+      "Result": "VARCHAR(300)",
+      "StartTime": "BIGINT",
+      "EndTime": "BIGINT"
+    }
+  },
+  {
+    "CLASS": "范式",
+    "*Name":"CHAR(60)",
+    "Description":"VARCHAR(300)",
+    "COMMENT": {
+      "CLASS": "范式",
+      "*Name":"CHAR(60)",
+      "Description":"VARCHAR(300)"
+    }
+  },
+  {
+    "CLASS": "Competition",
+    "*Name":"CHAR(60)",
+    "StartTime":"BIGINT",
+    "EndTime":"BIGINT",
+    "Descriprion":"VARCHAR(300)",
+    "COMMENT": {
+      "CLASS": "Competition",
+      "*Name":"CHAR(60)",
+      "StartTime":"BIGINT",
+      "EndTime":"BIGINT",
+      "Descriprion":"VARCHAR(300)"
+    }
+  },
+  {
+    "CLASS": "SubCompetition",
+    "*UUID":"CHAR(36)",
+    "Name@Competition":"CHAR(60)",
+    "Name@Paradigm":"CHAR(60)",
+    "Name@Problem":"CHAR(60)",
+    "StartTime":"BIGINT",
+    "EndTime":"BIGINT",
+    "COMMENT": {
+      "CLASS": "SubCompetition",
+      "*Name":"CHAR(60)",
+      "Name@Competition":"CHAR(60)",
+      "Name@Paradigm":"CHAR(60)",
+      "Name@Problem":"CHAR(60)",
+      "StartTime":"BIGINT",
+      "EndTime":"BIGINT"
+    }
+  },
+  {
+    "CLASS": "BLOCK",
+    "*UUID":"CHAR(36)",
+    "UUID@SubCompetition":"CHAR(36)",
+    "stimulateOrder":"VARCHAR(300)",
+    "Name":"CHAR(60)",
+    "StartTime":"BIGINT",
+    "EndTime":"BIGINT",
+    "COMMENT": {
+      "CLASS": "Block",
+      "*UUID":"CHAR(36)",
+      "UUID@SubCompetition":"CHAR(36)",
+      "stimulateOrder":"VARCHAR(300)",
+      "Name":"CHAR(60)",
+      "StartTime":"BIGINT",
+      "EndTime":"BIGINT"
+    }
+  },
+  {
+    "CLASS": "Trial",
+    "*UUID":"CHAR(36)",
+    "UUID@BLOCK":"CHAR(36)",
+    "Name":"CHAR(60)",
+    "Result": "VARCHAR(300)",
+    "StartTime":"BIGINT",
+    "EndTime":"BIGINT",
+    "COMMENT": {
+      "CLASS": "Trial",
+      "*UUID":"CHAR(36)",
+      "UUID@BLOCK":"CHAR(36)",
+      "Name":"CHAR(60)",
+      "Result": "VARCHAR(300)",
+      "StartTime":"BIGINT",
+      "EndTime":"BIGINT"
+    }
+  },
+  {
+    "CLASS": "Team",
+    "*TeamName":"CHAR(60)",
+    "Descriprion":"VARCHAR(300)",
+    "COMMENT": {
+      "CLASS": "Team",
+      "*TeamName":"CHAR(60)",
+      "Descriprion":"VARCHAR(300)"
+    }
+  },
+  {
+    "CLASS": "Subject",
+    "*ID":"BIGINT",
+    "Name":"CHAR(60)",
+    "Gender":"TINYINT",
+    "Birthday":"CHAR(10)",
+    "Descriprion":"VARCHAR(300)",
+    "COMMENT": {
+      "CLASS": "Subject",
+      "*ID":"BIGINT",
+      "Name":"CHAR(60)",
+      "Gender":"TINYINT",
+      "Birthday":"CHAR(10)",
+      "Descriprion":"VARCHAR(300)"
+    }
+  },
+  {
+    "CLASS": "Paradigm",
+    "*Name":"CHAR(60)",
+    "COMMENT": {
+      "CLASS": "Paradigm",
+      "*Name":"CHAR(60)"
+    }
+  },
+  {
+    "CLASS": "ControllerInfo",
+    "*IPAddress":"CHAR(15)",
+    "COMMENT": {
+      "CLASS": "ControllerInfo",
+      "*IPAddress":"CHAR(15)"
+    }
+  },
+  {
+    "CLASS": "AlgorithmInfo",
+    "*IPAddress":"CHAR(15)",
+    "IPAddress@ControllerInfo":"CHAR(15)",
+    "Name":"CHAR(10)",
+    "COMMENT": {
+      "CLASS": "AlgorithmInfo",
+      "*IPAddress":"CHAR(15)",
+      "IPAddress@ControllerInfo":"CHAR(15)",
+      "Name":"CHAR(10)"
+    }
+  },
+  {
+    "CLASS": "EEGData",
+    "*UUID":"CHAR(36)",
+    "UUID@BLOCK":"CHAR(36)",
+    "ID@Subject":"BIGINT",
+    "Time":"BIGINT",
+    "SampleFrequency":"INT",
+    "RowNum":"INT",
+    "ClumnNum":"INT",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS": "EEGData",
+      "*UUID":"CHAR(36)",
+      "UUID@BLOCK":"CHAR(36)",
+      "ID@Subject":"BIGINT",
+      "Time":"BIGINT",
+      "SampleFrequency":"INT",
+      "RowNum":"INT",
+      "ClumnNum":"INT",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS": "BlockResult_BCI",
+    "*UUID":"CHAR(36)",
+    "UUID@BLOCK":"CHAR(36)",
+    "TeamName@Team":"CHAR(60)",
+    "IPAddress@AlgorithmInfo":"CHAR(15)",
+    "ID@Subject":"BIGINT",
+    "result":"FLOAT",
+    "COMMENT": {
+      "CLASS": "BlockResult_BCI",
+      "*UUID":"CHAR(36)",
+      "UUID@BLOCK":"CHAR(36)",
+      "TeamName@Team":"CHAR(60)",
+      "IPAddress@AlgorithmInfo":"CHAR(15)",
+      "ID@Subject":"BIGINT",
+      "result":"FLOAT"
+    }
+  },
+  {
+    "CLASS": "TrialResult_BCI",
+    "*UUID":"CHAR(36)",
+    "UUID@Trial":"CHAR(36)",
+    "TeamName@Team":"CHAR(60)",
+    "ID@Subject":"BIGINT",
+    "resultNum":"VARCHAR(300)",
+    "usedDataLength":"INT",
+    "usedTime":"float",
+    "score":"float",
+    "COMMENT": {
+      "CLASS": "TrialResult_BCI",
+      "*UUID":"CHAR(36)",
+      "UUID@Trial":"CHAR(36)",
+      "TeamName@Team":"CHAR(60)",
+      "ID@Subject":"BIGINT",
+      "resultNum":"VARCHAR(300)",
+      "usedDataLength":"INT",
+      "usedTime":"float",
+      "score":"float"
+    }
+  },
+  {
+    "CLASS": "Problem",
+    "*Name":"CHAR(60)",
+    "COMMENT": {
+      "CLASS": "Problem",
+      "*Name":"CHAR(60)"
+    }
+  },
+  {
+    "CLASS": "ALgorithmData",
+    "*UUID":"CHAR(36)",
+    "Name@Team":"CHAR(60)",
+    "Name@Paradigm":"CHAR(60)",
+    "Name":"CHAR(60)",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS": "ALgorithmData",
+      "*UUID":"CHAR(36)",
+      "Name@Team":"CHAR(60)",
+      "Name@Paradigm":"CHAR(60)",
+      "Name":"CHAR(60)",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS": "Picture",
+    "*UUID":"CHAR(36)",
+    "UUID@SubCompetition":"CHAR(36)",
+    "Name@Paradigm":"CHAR(60)",
+    "Name":"CHAR(60)",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS": "Picture",
+      "*UUID":"CHAR(36)",
+      "UUID@SubCompetition":"CHAR(36)",
+      "Name@Paradigm":"CHAR(60)",
+      "Name":"CHAR(60)",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  },
+  {
+    "CLASS": "Video",
+    "*UUID":"CHAR(36)",
+    "UUID@SubCompetition":"CHAR(36)",
+    "Name@Paradigm":"CHAR(60)",
+    "Name":"CHAR(60)",
+    "Path":"VARCHAR(300)",
+    "Format":"CHAR(20)",
+    "COMMENT": {
+      "CLASS": "Video",
+      "*UUID":"CHAR(36)",
+      "UUID@SubCompetition":"CHAR(36)",
+      "Name@Paradigm":"CHAR(60)",
+      "Name":"CHAR(60)",
+      "Path":"VARCHAR(300)",
+      "Format":"CHAR(20)"
+    }
+  }
+],
+  "BaseTables":
+  [
+    {
+      "CLASS": "Data",
+      "Did":"INT",
+      "Name":"CHAR(60)",
+      "COMMENT": {
+        "CLASS": "Data",
+        "Did":"INT",
+        "Name":"CHAR(60)"
+      }
+    },
+    {
+      "CLASS": "Data_Data",
+      "Did":"INT",
+      "SubjectDataDid":"INT",
+      "ObjectDataDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_Data",
+        "Did":"INT",
+        "SubjectDataDid":"INT",
+        "ObjectDataDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_Devices",
+      "Did":"INT",
+      "DataDid":"INT",
+      "DevicesDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_Devices",
+        "Did":"INT",
+        "DataDid":"INT",
+        "DevicesDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_People",
+      "Did":"INT",
+      "DataDid":"INT",
+      "PeopleDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_People",
+        "Did":"INT",
+        "DataDid":"INT",
+        "PeopleDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_DataFiles",
+      "Did":"INT",
+      "DataDid":"INT",
+      "DataFilesDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_DataFiles",
+        "Did":"INT",
+        "DataDid":"INT",
+        "DataFilesDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_BlockResult",
+      "Did":"INT",
+      "DataDid":"INT",
+      "BlockResultDid": "INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_BlockResult",
+        "Did":"INT",
+        "DataDid":"INT",
+        "BlockResultDid": "INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_TrialResult",
+      "Did":"INT",
+      "DataDid":"INT",
+      "TrialResultDid": "INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_TrialResult",
+        "Did":"INT",
+        "DataDid":"INT",
+        "TrialResultDid": "INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_EEGDataP",
+      "Did":"INT",
+      "DataDid":"INT",
+      "EEGDataPDid": "INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_EEGDataP",
+        "Did":"INT",
+        "DataDid":"INT",
+        "EEGDataPDid": "INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_DataTypes",
+      "Did":"INT",
+      "DataDid":"INT",
+      "DataTypesDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_DataTypes",
+        "Did":"INT",
+        "DataDid":"INT",
+        "DataTypesDid":"INT"
+      }
+    },
+    {
+      "CLASS": "DataFiles",
+      "Did":"INT",
+      "Time":"BIGINT",
+      "StartTime": "BIGINT",
+      "EndTime": "BIGINT",
+      "Path":"VARCHAR(260)",
+      "Format":"CHAR(20)",
+      "IsCompression":"TINYINT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "DataFiles",
+        "Did":"INT",
+        "Time":"BIGINT",
+        "StartTime": "BIGINT",
+        "EndTime": "BIGINT",
+        "Path":"VARCHAR(260)",
+        "Format":"CHAR(20)",
+        "IsCompression":"TINYINT",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "BlockResult",
+      "Did":"INT",
+      "result":"FLOAT",
+      "COMMENT": {
+        "CLASS": "BlockResult",
+        "Did":"INT",
+        "result":"FLOAT"
+      }
+    },
+    {
+      "CLASS": "TrialResult",
+      "Did":"INT",
+      "resultNum":"VARCHAR(300)",
+      "usedDataLength":"INT",
+      "usedTime":"FLOAT",
+      "score":"FLOAT",
+      "COMMENT": {
+        "CLASS": "TrialResult",
+        "Did":"INT",
+        "resultNum":"VARCHAR(300)",
+        "usedDataLength":"INT",
+        "usedTime":"FLOAT",
+        "score":"FLOAT"
+      }
+    },
+    {
+      "CLASS": "EEGDataP",
+      "Did":"INT",
+      "SampleFrequency":"INT",
+      "RowNum":"INT",
+      "ClumnNum":"INT",
+      "COMMENT": {
+        "CLASS": "EEGDataP",
+        "Did":"INT",
+        "SampleFrequency":"INT",
+        "RowNum":"INT",
+        "ClumnNum":"INT"
+      }
+    },
+    {
+      "CLASS": "DataTypes",
+      "Did":"INT",
+      "type":"CHAR(60)",
+      "COMMENT": {
+        "CLASS": "DataTypes",
+        "Did":"INT",
+        "type":"CHAR(60)"
+      }
+    },
+    {
+      "CLASS": "Devices",
+      "Did":"INT",
+      "Name":"CHAR(60)",
+      "manufacture":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "Devices",
+        "Did":"INT",
+        "Name":"CHAR(60)",
+        "manufacture":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "Devices_Devices",
+      "Did":"INT",
+      "SubjectDevicesDid":"INT",
+      "ObjectDevicesDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Devices_Devices",
+        "Did":"INT",
+        "SubjectDevicesDid":"INT",
+        "ObjectDevicesDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Devices_RobotP",
+      "Did":"INT",
+      "DevicesDid":"INT",
+      "RobotPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Devices_RobotP",
+        "Did":"INT",
+        "DevicesDid":"INT",
+        "RobotPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Devices_ComputerP",
+      "Did":"INT",
+      "DevicesDid":"INT",
+      "ComputerPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Devices_ComputerP",
+        "Did":"INT",
+        "DevicesDid":"INT",
+        "ComputerPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Devices_SensorP",
+      "Did":"INT",
+      "DevicesDid":"INT",
+      "SensorPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Devices_SensorP",
+        "Did":"INT",
+        "DevicesDid":"INT",
+        "SensorPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Devices_DevicesTypes",
+      "Did":"INT",
+      "DevicesDid":"INT",
+      "DevicesTypesDid":"INT",
+      "COMMENT": {
+        "CLASS": "Devices_DevicesTypes",
+        "Did":"INT",
+        "DevicesDid":"INT",
+        "DevicesTypesDid":"INT"
+      }
+    },
+    {
+      "CLASS": "RobotP",
+      "Did":"INT",
+      "Function":"CHAR(60)",
+      "IsIntelligent":"TINYINT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "RobotP",
+        "Did":"INT",
+        "Function":"CHAR(60)",
+        "IsIntelligent":"TINYINT",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "ComputerP",
+      "Did":"INT",
+      "CPU":"CHAR(60)",
+      "IPAddress": "CHAR(15)",
+      "Hostname": "CHAR(60)",
+      "MemorySize":"INT",
+      "DiskSize":"INT",
+      "OS":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "ComputerP",
+        "Did":"INT",
+        "CPU":"CHAR(60)",
+        "IPAddress": "CHAR(15)",
+        "Hostname": "CHAR(60)",
+        "MemorySize":"INT",
+        "DiskSize":"INT",
+        "OS":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "SensorP",
+      "Did":"INT",
+      "Function":"CHAR(60)",
+      "SignalSouce":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "SensorP",
+        "Did":"INT",
+        "Function":"CHAR(60)",
+        "SignalSouce":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "DevicesTypes",
+      "Did":"INT",
+      "type":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "DevicesTypes",
+        "Did":"INT",
+        "type":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "Processes",
+      "Did":"INT",
+      "Name":"CHAR(60)",
+      "StartTime":"BIGINT",
+      "EndTime":"BIGINT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "Processes",
+        "Did":"INT",
+        "Name":"CHAR(60)",
+        "StartTime":"BIGINT",
+        "EndTime":"BIGINT",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "Processes_Devices",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "DevicesDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_Devices",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "DevicesDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Data_Processes",
+      "Did":"INT",
+      "DataDid":"INT",
+      "ProcessesDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Data_Processes",
+        "Did":"INT",
+        "DataDid":"INT",
+        "ProcessesDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Processes_People",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "PeopleDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_People",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "PeopleDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Processes_Paradigms",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "ParadigmsDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_Paradigms",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "ParadigmsDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Processes_Processes",
+      "Did":"INT",
+      "SubjectProcessesDid":"INT",
+      "ObjectProcessesDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_Processes",
+        "Did":"INT",
+        "SubjectProcessesDid":"INT",
+        "ObjectProcessesDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Processes_CompetitionP",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "CompetitionPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_CompetitionP",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "CompetitionPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Processes_BlockP",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "BlockPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_BlockP",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "BlockPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Processes_TrialP",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "TrialPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_TrialP",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "TrialPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+
+    {
+      "CLASS": "Processes_ProcessesTypes",
+      "Did":"INT",
+      "ProcessesDid":"INT",
+      "ProcessesTypesDid":"INT",
+      "COMMENT": {
+        "CLASS": "Processes_ProcessesTypes",
+        "Did":"INT",
+        "ProcessesDid":"INT",
+        "ProcessesTypesDid":"INT"
+      }
+    },
+    {
+      "CLASS": "CompetitionP",
+      "Did":"INT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "CompetitionP",
+        "Did":"INT",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "BlockP",
+      "Did":"INT",
+      "stimulateOrder":"VARCHAR(300)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "BlockP",
+        "Did":"INT",
+        "stimulateOrder":"VARCHAR(300)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "TrialP",
+      "Did":"INT",
+      "Result": "VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "TrialP",
+        "Did":"INT",
+        "Result": "VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "ProcessesTypes",
+      "Did":"INT",
+      "type":"CHAR(60)",
+      "COMMENT": {
+        "CLASS": "ProcessesTypes",
+        "Did":"INT",
+        "type":"CHAR(60)"
+      }
+    },
+    {
+      "CLASS": "Paradigms",
+      "Did":"INT",
+      "Name":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "Paradigms",
+        "Did":"INT",
+        "Name":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "Paradigms_SSVEPP",
+      "Did":"INT",
+      "ParadigmsDid":"INT",
+      "SSVEPPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Paradigms_SSVEPP",
+        "Did":"INT",
+        "ParadigmsDid":"INT",
+        "SSVEPPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Paradigms_MIP",
+      "Did":"INT",
+      "ParadigmsDid":"INT",
+      "MIPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Paradigms_MIP",
+        "Did":"INT",
+        "ParadigmsDid":"INT",
+        "MIPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Paradigms_EMOTIONP",
+      "Did":"INT",
+      "ParadigmDids":"INT",
+      "EMOTIONPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Paradigms_EMOTIONP",
+        "Did":"INT",
+        "ParadigmsDid":"INT",
+        "EMOTIONPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Paradigms_RSVPP",
+      "Did":"INT",
+      "ParadigmsDid":"INT",
+      "RSVPPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "Paradigms_RSVPP",
+        "Did":"INT",
+        "ParadigmsDid":"INT",
+        "RSVPPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "Paradigms_PardigmsTypes",
+      "Did":"INT",
+      "ParadigmsDid":"INT",
+      "PardigmsTypesDid":"INT",
+      "COMMENT": {
+        "CLASS": "Paradigms_PardigmsTypes",
+        "Did":"INT",
+        "ParadigmsDid":"INT",
+        "PardigmsTypesDid":"INT"
+      }
+    },
+    {
+      "CLASS": "SSVEPP",
+      "Did":"INT",
+      "Frenquence":"INT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "SSVEPP",
+        "Did":"INT",
+        "Frenquence":"INT",
+        "Description":"VARCHAR"
+      }
+    },
+    {
+      "CLASS": "MIP",
+      "Did":"INT",
+      "BodyPart":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "MIP",
+        "Did":"INT",
+        "BodyPart":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "EMOTIONP",
+      "Did":"INT",
+      "EmotionType":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "EMOTIONP",
+        "Did":"INT",
+        "EmotionType":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "RSVPP",
+      "Did":"INT",
+      "Target":"CHAR(60)",
+      "Frenquence":"INT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "RSVPP",
+        "Did":"INT",
+        "Target":"CHAR(60)",
+        "Frenquence":"INT",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "PardigmsTypes",
+      "Did":"INT",
+      "type":"CHAR(60)",
+      "COMMENT": {
+        "CLASS": "PardigmsTypes",
+        "Did":"INT",
+        "type":"CHAR(60)"
+      }
+    },
+    {
+      "CLASS": "People",
+      "Did":"INT",
+      "Name":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "People",
+        "Did":"INT",
+        "Name":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "People_People",
+      "Did":"INT",
+      "SubjectPeopleDid":"INT",
+      "ObjectPeopleDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_People",
+        "Did":"INT",
+        "SubjectPeopleDid":"INT",
+        "ObjectPeopleDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_OperatorP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "OperatorPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_OperatorP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "OperatorPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_UserP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "UserPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_UserP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "UserPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_DeveloperP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "DeveloperPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_DeveloperP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "DeveloperPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_MaintainerP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "MaintainerPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_MaintainerP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "MaintainerPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_SubjectP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "SubjectPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_SubjectP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "SubjectPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_ExperimenterP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "ExperimenterPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_ExperimenterP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "ExperimenterPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_ParticipantP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "ParticipantP":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_ParticipantP",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "ParticipantP":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_TeamP",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "TeamPDid":"INT",
+      "RelationTypeDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_TeamP",
+        "Did":"INT",
+        "TeamPDid":"INT",
+        "RelationTypeDid":"INT"
+      }
+    },
+    {
+      "CLASS": "People_PeopleTypes",
+      "Did":"INT",
+      "PeopleDid":"INT",
+      "PeopleTypesDid":"INT",
+      "COMMENT": {
+        "CLASS": "People_PeopleTypes",
+        "Did":"INT",
+        "PeopleDid":"INT",
+        "PeopleTypesDid":"INT"
+      }
+    },
+    {
+      "CLASS": "OperatorP",
+      "Did":"INT",
+      "job":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "OperatorP",
+        "Did":"INT",
+        "job":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "UserP",
+      "Did":"INT",
+      "Account":"CHAR(60)",
+      "Password":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "UserP",
+        "Did":"INT",
+        "Account":"CHAR(60)",
+        "Password":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "DeveloperP",
+      "Did":"INT",
+      "Account":"CHAR(60)",
+      "Password":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "DeveloperP",
+        "Did":"INT",
+        "Account":"CHAR(60)",
+        "Password":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "MaintainerP",
+      "Did":"INT",
+      "Account":"CHAR(60)",
+      "Password":"CHAR(60)",
+      "Responsibility":"CHAR(60)",
+      "PermissionLevel":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "MaintainerP",
+        "Did":"INT",
+        "Account":"CHAR(60)",
+        "Password":"CHAR(60)",
+        "Responsibility":"CHAR(60)",
+        "PermissionLevel":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "SubjectP",
+      "Did":"INT",
+      "Name":"CHAR(60)",
+      "Gender":"TINYINT",
+      "Birthday":"DATE",
+      "ID": "BIGINT",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "SubjectP",
+        "Did":"INT",
+        "Name":"CHAR(60)",
+        "Gender":"TINYINT",
+        "Birthday":"DATE",
+        "Description":"VARCHAR(300)",
+        "ID": "BIGINT"
+      }
+    },
+    {
+      "CLASS": "ExperimenterP",
+      "Did":"INT",
+      "ExperimentName":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "ExperimenterP",
+        "Did":"INT",
+        "ExperimentName":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "ParticipantP",
+      "Did":"INT",
+      "Account":"CHAR(60)",
+      "Password":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "ParticipantP",
+        "Did":"INT",
+        "Account":"CHAR(60)",
+        "Password":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "TeamP",
+      "Did":"INT",
+      "TeamName":"CHAR(60)",
+      "Description":"VARCHAR(300)",
+      "COMMENT": {
+        "CLASS": "TeamP",
+        "Did":"INT",
+        "TeamName":"CHAR(60)",
+        "Description":"VARCHAR(300)"
+      }
+    },
+    {
+      "CLASS": "PeopleTypes",
+      "Did":"INT",
+      "type":"CHAR(60)",
+      "COMMENT": {
+        "CLASS": "PeopleTypes",
+        "Did":"unique identification",
+        "type":"CHAR(60)"
+      }
+    },
+    {
+      "CLASS": "RelationType",
+      "Did":"INT",
+      "type":"CHAR(60)",
+      "COMMENT": {
+        "CLASS": "RelationType",
+        "Did":"unique identification",
+        "type":"CHAR(60)"
+      }
+    }
+  ],
+  "InitTables":[
+    {
+      "CLASS": "DataTypes",
+      "Did#INT": "type#VARCHAR(60)",
+      "1": "PhysiologyData",
+      "2": "EEGData",
+      "3": "EyeTrackingData",
+      "4": "MEGData",
+      "5": "MRIData",
+      "6": "EMGData",
+      "7": "fNIRSData",
+      "8": "MediaData",
+      "9": "Picture",
+      "10": "Sound",
+      "11": "Video",
+      "12": "ProblemsTable",
+      "13": "BlockResult",
+      "14": "TrialResult",
+      "15": "AlgorithmCode",
+      "16": "State"
+
+    },
+    {
+      "CLASS": "DevicesTypes",
+      "Did#INT": "type#VARCHAR(60)",
+      "1": "Sensor",
+      "2": "Robot",
+      "3": "Computer"
+    },
+    {
+      "CLASS": "ProcessesTypes",
+      "Did#INT": "type#VERCHAR(60)",
+      "1": "Competition",
+      "2": "Experiment",
+      "3": "Mission",
+      "4": "Block",
+      "5": "Trial"
+    },
+    {
+      "CLASS": "PardigmsTypes",
+      "Did#INT": "type#VARCHAR(60)",
+      "1": "SSVEP",
+      "2": "RSVP",
+      "3": "EMOTION",
+      "4": "MI"
+    },
+    {
+      "CLASS": "PeopleTypes",
+      "Did#INT": "type#VARCHAR(60)",
+      "1": "User",
+      "2": "Developer",
+      "3": "Maintainer",
+      "4": "Subject",
+      "5": "Experiment",
+      "6": "Operator",
+      "7": "Participant",
+      "8": "Team"
+    },
+    {
+      "CLASS": "RelationType",
+      "Did#INT": "type#VARCHAR(60)",
+      "1": "friend",
+      "2": "parent",
+      "3": "containt",
+      "4": "create",
+      "5": "is"
+    }
+  ]
+}
+
+

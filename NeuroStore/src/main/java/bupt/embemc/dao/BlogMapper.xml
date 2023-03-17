@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bupt.embemc.dao.BlogMapper">
+
+    <select id="test" resultMap="ResultMap"
+            resultType="java.util.List">
+        SELECT * FROM Data
+    </select>
+    <resultMap type="java.util.Map" id="ResultMap">
+        <result column="Did" property="Did"  javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="Name" property="Name"  javaType="java.lang.String" jdbcType="CHAR"/>
+        <result column="TimeStamp" property="TimeStamp"  javaType="java.util.Date" jdbcType="DATE"/>
+    </resultMap>
+
+
+    <parameterMap id="function1P" type="java.util.Map">
+        <parameter property="teamName" jdbcType="CHAR" mode="IN"/>
+        <parameter property="subcompetitionName" jdbcType="CHAR" mode="IN"/>
+    </parameterMap>
+    <select id="function1" parameterMap="function1P" statementType="CALLABLE" resultMap="function1Map"
+            resultType="java.util.List">
+            <![CDATA[
+        {
+           call function1(
+                #{teamName,mode=IN, jdbcType=CHAR},
+                #{subcompetitionName,mode=IN,jdbcType=CHAR}
+            )
+        }
+       ]]>
+    </select>
+
+    <resultMap type="java.util.Map" id="function1Map">
+        <result column="sum(c.result)" property="Did"  javaType="java.lang.Float" jdbcType="FLOAT"/>
+    </resultMap>
+<!--    To许家鑫-->
+<!--    1、输入是Map,输出是List<Map>,输入输出的Map都需要自己定义；-->
+<!--    2、给你文档的接口数据格式说明：带“”的都是CHAR，不带的是BIGINT。返回的列名再实例图片中，数字都是FLOAT格式，时间是DATE格式-->
+    
+</mapper>

@@ -1,0 +1,119 @@
+{
+  "APICLass":
+  {
+    "电脑":"Devices",
+    "放大器":"Devices",
+    "无人机": "Devices",
+    "操作员":"People",
+    "图片":"Data",
+    "无人机状态": "Data",
+    "EEG数据": "Data",
+    "眼动数据": "Data",
+    "巡逻": "Processes",
+    "脑电判别Block": "Processes",
+    "可疑目标识别trial": "Processes",
+    "范式": "Paradigms",
+    "目标判别trial": "Processes",
+    "Competition": "Processes",
+    "SubCompetition": "Processes",
+    "BLOCK": "Processes",
+    "Trial": "Processes",
+    "Team": "People",
+    "Subject": "People",
+    "ControllerInfo": "Devices",
+    "AlgorithmInfo": "Devices",
+    "Paradigm": "Paradigms",
+    "EEGData": "Data",
+    "BlockResult_BCI": "Data",
+    "TrialResult_BCI": "Data",
+    "Problem": "Data",
+    "ALgorithmData": "Data",
+    "Picture": "Data",
+    "Video": "Data"
+  },
+  "APIType":
+  {
+    "电脑":["3"],
+    "放大器":["1"],
+    "无人机": ["2"],
+    "操作员":["6","4"],
+    "图片":["9"],
+    "无人机状态": ["16"],
+    "EEG数据": ["2"],
+    "眼动数据": ["2"],
+    "巡逻": ["3"],
+    "范式": [],
+    "脑电判别Block": ["4"],
+    "可疑目标识别trial": ["5"],
+    "目标判别trial": ["5"],
+    "Competition": ["1"],
+    "SubCompetition": ["1"],
+    "BLOCK": ["4"],
+    "Trial": ["5"],
+    "Team": ["8"],
+    "Subject": ["4"],
+    "ControllerInfo": ["3"],
+    "AlgorithmInfo": ["3"],
+    "Paradigm": [],
+    "EEGData": ["2"],
+    "BlockResult_BCI": ["13"],
+    "TrialResult_BCI": ["14"],
+    "Problem": ["12"],
+    "ALgorithmData": ["15"],
+    "Picture": ["9"],
+    "Video": ["11"]
+  },
+  "DevicesProperties":
+  {
+    "1": ["SensorP"],
+    "2": ["RobotP"],
+    "3": ["ComputerP"],
+    "4": ["PluginProperties"]
+
+  },
+  "PeopleProperties":
+  {
+    "1": ["UserProperties"],
+    "2": ["DeveloperProperties"],
+    "3": ["MaintainerProperties"],
+    "4": ["SubjectP"],
+    "5": ["ExperimenterProperties"],
+    "6": ["OperatorP"],
+    "8": ["TeamP"]
+  },
+  "ParadigmsProperties":
+  {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": []
+  },
+  "DataProperties":
+  {
+    "1": [],
+    "2": ["EEGDataP","DataFiles"],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": ["DataFiles"],
+    "10": [],
+    "11": ["DataFiles"],
+    "12": [],
+    "13": ["BlockResult"],
+    "14": ["TrialResult"],
+    "15": ["DataFiles"],
+    "16": ["DataFiles"]
+  },
+  "ProcessesProperties":
+  {
+    "1": ["CompetitionP"],
+    "2": [],
+    "3": [],
+    "4": ["BlockP"],
+    "5": ["TrialP"]
+  }
+
+}
