@@ -99,7 +99,7 @@ public class DbInitOperator {
     }
 
 
-    private void createBaseTables(DbOperator DbO,PreparaedStatementUpdate ps) throws SQLException {
+    private void    createBaseTables(DbOperator DbO,PreparaedStatementUpdate ps) throws SQLException {
         Map BaseTables = JSONReader.getBaseTables();
 
         Iterator<String> iterator = BaseTables.keySet().iterator();
@@ -117,7 +117,7 @@ public class DbInitOperator {
                 String commentStr = (String)comment.get(key);
                 if(key.equals("Did")){
                     primaryKey = key;
-                    type = type + " UNSIGNED AUTO_INCREMENT ";
+//                    type = type + " UNSIGNED AUTO_INCREMENT ";
                 }
                 type = type + " COMMENT '"+commentStr+"'";
                 BaseTableSql.replace(key,type);

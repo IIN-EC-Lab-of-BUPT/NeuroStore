@@ -14,7 +14,7 @@ class Experimenter(Property):
     """
     def __init__(self):
         super(Experimenter, self).__init__()
-        self.content["Class"] = "ExperimenterP"
+        self.content["CLASS"] = "ExperimenterP"
 
     def setExperimentName(self, experimentName: str):
         """

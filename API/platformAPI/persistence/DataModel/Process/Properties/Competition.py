@@ -14,7 +14,7 @@ class Competition(Property):
     """
     def __init__(self):
         super(Competition, self).__init__()
-        self.content["Class"] = "CompetitionP"
+        self.content["CLASS"] = "CompetitionP"
 
     def setDescription(self,description: str):
         """

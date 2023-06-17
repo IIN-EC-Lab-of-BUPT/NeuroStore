@@ -14,7 +14,7 @@ class Participant(Property):
     """
     def __init__(self):
         super(Participant, self).__init__()
-        self.content["Class"] = "ParticipantP"
+        self.content["CLASS"] = "ParticipantP"
 
     def setAccount(self,account: str):
         """

@@ -14,7 +14,7 @@ class DataFile(Property):
     """
     def __init__(self):
         super(DataFile, self).__init__()
-        self.content["Class"] = "DataFiles"
+        self.content["CLASS"] = "DataFiles"
 
     def setTime(self,time: int):
         """
@@ -40,13 +40,7 @@ class DataFile(Property):
         """
         self.content["EndTime"] = endTime
 
-    def setFormat(self,format: str):
-        """
-        :description: 设置文件夹格式
-        :param format: str,文件夹格式
-        :return:
-        """
-        self.content["Format"] = format
+
 
     def setDescription(self,description: str):
         """

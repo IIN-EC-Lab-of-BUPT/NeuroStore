@@ -46,6 +46,7 @@ public class MessageProcess1 implements Runnable {
                     MessageHandleOperator messageHandleOperator = new MessageHandleOperator(map, dbOperator);
                     messageHandleOperator.proprecess();
                     messageHandleOperator.run();
+                    System.out.println(1);
                 } catch (Exception e) {
                     log.info(e.getMessage());
                 }

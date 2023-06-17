@@ -14,7 +14,7 @@ class Maintainer(Property):
     """
     def __init__(self):
         super(Maintainer, self).__init__()
-        self.content["Class"] = "MaintainerP"
+        self.content["CLASS"] = "MaintainerP"
 
     def setAccount(self,account: str):
         """

@@ -14,7 +14,7 @@ class Robot(Property):
     """
     def __init__(self):
         super(Robot, self).__init__()
-        self.content["Class"] = "RobotP"
+        self.content["CLASS"] = "RobotP"
 
     def setFunction(self,function: str):
         """

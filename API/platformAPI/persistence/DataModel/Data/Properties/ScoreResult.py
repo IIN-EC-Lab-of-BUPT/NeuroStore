@@ -14,7 +14,7 @@ class ScoreResult(Property):
     """
     def __init__(self):
         super(ScoreResult, self).__init__()
-        self.content["Class"] = "BlockResult"
+        self.content["CLASS"] = "BlockResult"
 
     def setResult(self,time: int):
         """

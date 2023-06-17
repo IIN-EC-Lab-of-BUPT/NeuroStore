@@ -14,7 +14,7 @@ class Process(DataModelInterface):
     """
     def __init__(self):
         super(Process,self).__init__()
-        self.content["Class"] = "Paradigms"
+        self.content["CLASS"] = "Process"
 
     def resetDid(self,did: str):
         """

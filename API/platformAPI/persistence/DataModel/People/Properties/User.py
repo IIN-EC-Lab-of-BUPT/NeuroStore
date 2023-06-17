@@ -14,7 +14,7 @@ class User(Property):
     """
     def __init__(self):
         super(User, self).__init__()
-        self.content["Class"] = "UserP"
+        self.content["CLASS"] = "UserP"
 
     def setAccount(self,account: str):
         """

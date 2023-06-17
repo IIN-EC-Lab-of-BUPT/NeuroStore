@@ -14,7 +14,7 @@ class Block(Property):
     """
     def __init__(self):
         super(Block, self).__init__()
-        self.content["Class"] = "BlockP"
+        self.content["CLASS"] = "BlockP"
 
     def setStimulateOrder(self,stimulateOrder: str):
         """

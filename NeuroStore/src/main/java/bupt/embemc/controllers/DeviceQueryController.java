@@ -32,31 +32,31 @@ public class DeviceQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("DevicesP", "type", type, preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("DeviceTYpes", "type", type, preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;
     }
-    @RequestMapping("/eletrode/{eletrodeName}")
-    public List deviceForElectrode(@PathVariable("eletrodeName") String eletrodeName) throws SQLException, IOException, ClassNotFoundException {
-
-        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
-        preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("DevicesP", "eletrode", eletrodeName, preparaedStatementUpdate);
-        List list = parse(result);
-        preparaedStatementUpdate.disconnect();
-        return list;
-    }
-    @RequestMapping("/electrodeList/{deviceDid}")
-    public List electrodeForDevice(@PathVariable("deviceDid") String deviceDid) throws SQLException, IOException, ClassNotFoundException {
-
-        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
-        preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("DevicesP", "device", deviceDid, preparaedStatementUpdate);
-        List list = parse(result);
-        preparaedStatementUpdate.disconnect();
-        return list;
-    }
+//    @RequestMapping("/eletrode/{eletrodeName}")
+//    public List deviceForElectrode(@PathVariable("eletrodeName") String eletrodeName) throws SQLException, IOException, ClassNotFoundException {
+//
+//        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
+//        preparaedStatementUpdate.connect(true,0);
+//        ResultSet result = DbOperator.select("DevicesP", "eletrode", eletrodeName, preparaedStatementUpdate);
+//        List list = parse(result);
+//        preparaedStatementUpdate.disconnect();
+//        return list;
+//    }
+//    @RequestMapping("/electrodeList/{deviceDid}")
+//    public List electrodeForDevice(@PathVariable("deviceDid") String deviceDid) throws SQLException, IOException, ClassNotFoundException {
+//
+//        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
+//        preparaedStatementUpdate.connect(true,0);
+//        ResultSet result = DbOperator.select("DevicesP", "device", deviceDid, preparaedStatementUpdate);
+//        List list = parse(result);
+//        preparaedStatementUpdate.disconnect();
+//        return list;
+//    }
     @RequestMapping("/data/{dataDid}")
     public List deviceForData(@PathVariable("dataDid") String dataDid) throws SQLException, IOException, ClassNotFoundException {
 

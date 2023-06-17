@@ -44,7 +44,7 @@ public class PeopleQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("PeopleP","Did", "gender", gender, preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("SubjectProperties","Did", "Gender", gender, preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;
@@ -54,7 +54,7 @@ public class PeopleQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("PeopleP","Did", "Birthday", Birthday, preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("SubjectProperties","Did", "Birthday", Birthday, preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;
@@ -79,26 +79,26 @@ public class PeopleQueryController {
         preparaedStatementUpdate.disconnect();
         return list;
     }
-    @RequestMapping("/Hight/{Hight}")
-    public List PeopleForHight(@PathVariable("Hight") String Hight) throws SQLException, IOException, ClassNotFoundException {
-
-        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
-        preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("PeopleP","Did", "Hight", Hight, preparaedStatementUpdate);
-        List list = parse(result);
-        preparaedStatementUpdate.disconnect();
-        return list;
-    }
-    @RequestMapping("/Lefthandedness/{Lefthandedness}")
-    public List PeopleForLefthandedness(@PathVariable("Lefthandedness") String Lefthandedness) throws SQLException, IOException, ClassNotFoundException {
-
-        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
-        preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("PeopleP","Did", "Lefthandedness", Lefthandedness, preparaedStatementUpdate);
-        List list = parse(result);
-        preparaedStatementUpdate.disconnect();
-        return list;
-    }
+//    @RequestMapping("/Hight/{Hight}")
+//    public List PeopleForHight(@PathVariable("Hight") String Hight) throws SQLException, IOException, ClassNotFoundException {
+//
+//        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
+//        preparaedStatementUpdate.connect(true,0);
+//        ResultSet result = DbOperator.select("PeopleP","Did", "Hight", Hight, preparaedStatementUpdate);
+//        List list = parse(result);
+//        preparaedStatementUpdate.disconnect();
+//        return list;
+//    }
+//    @RequestMapping("/Lefthandedness/{Lefthandedness}")
+//    public List PeopleForLefthandedness(@PathVariable("Lefthandedness") String Lefthandedness) throws SQLException, IOException, ClassNotFoundException {
+//
+//        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
+//        preparaedStatementUpdate.connect(true,0);
+//        ResultSet result = DbOperator.select("PeopleP","Did", "Lefthandedness", Lefthandedness, preparaedStatementUpdate);
+//        List list = parse(result);
+//        preparaedStatementUpdate.disconnect();
+//        return list;
+//    }
 
     @RequestMapping("/process/{processDid}")
     public List PeopleForProcess(@PathVariable("processDid") String processDid) throws SQLException, IOException, ClassNotFoundException {

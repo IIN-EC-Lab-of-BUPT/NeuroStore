@@ -14,7 +14,7 @@ class RSVP(Property):
     """
     def __init__(self):
         super(RSVP, self).__init__()
-        self.content["Class"] = "RSVPP"
+        self.content["CLASS"] = "RSVPP"
 
     def setTarget(self,target: str):
         """

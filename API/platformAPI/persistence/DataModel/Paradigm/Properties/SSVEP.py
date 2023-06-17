@@ -14,7 +14,7 @@ class SSVEP(Property):
     """
     def __init__(self):
         super(SSVEP, self).__init__()
-        self.content["Class"] = "SSVEPP"
+        self.content["CLASS"] = "SSVEPP"
 
     def setFrenquence(self,frenquence: int):
         """

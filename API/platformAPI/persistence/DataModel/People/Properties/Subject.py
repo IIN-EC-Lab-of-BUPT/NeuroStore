@@ -15,7 +15,7 @@ class Subject(Property):
     """
     def __init__(self):
         super(Subject, self).__init__()
-        self.content["Class"] = "SubjectP"
+        self.content["CLASS"] = "SubjectP"
 
     def setName(self,name: str):
         """

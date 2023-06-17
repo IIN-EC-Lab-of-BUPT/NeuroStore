@@ -14,7 +14,7 @@ class EMOTION(Property):
     """
     def __init__(self):
         super(EMOTION, self).__init__()
-        self.content["Class"] = "EMOTIONP"
+        self.content["CLASS"] = "EMOTIONP"
 
     def setEmotionType(self,emotionType: str):
         """

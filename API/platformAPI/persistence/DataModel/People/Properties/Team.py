@@ -14,7 +14,7 @@ class Team(Property):
     """
     def __init__(self):
         super(Team, self).__init__()
-        self.content["Class"] = "TeamP"
+        self.content["CLASS"] = "TeamP"
 
     def setTeamName(self,teamName: str):
         """

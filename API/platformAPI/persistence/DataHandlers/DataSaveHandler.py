@@ -18,11 +18,11 @@ class DataSaveHandler:
     """
     :description: 数据存储器
     """
-    def __init__(self,topic: str, config_path: str,receiveTopic: str, receiveConfigPath: str):
+    def __init__(self,topic: str, config_path: str):
         self.sender = CommunicationProducer(config_path)
         self.topic = topic
-        self.receiveTopic = receiveTopic
-        self.receiver = CommunicationConsumer(receiveConfigPath)
+        # self.receiveTopic = receiveTopic
+        # self.receiver = CommunicationConsumer(receiveConfigPath)
 
     def save(self,data: DataModel) -> bool:
         """
@@ -30,8 +30,8 @@ class DataSaveHandler:
         :param data: DataModel，存储内容
         :return: bool，是否成功回执
         """
-        head = uuid.uuid1()
-        data.setHead(head)
+        # head = uuid.uuid1()
+        # data.setHead(head)
         self.sender.send(self.topic, data.toBytes())
         return True
         # startTime = time.time()
@@ -52,5 +52,5 @@ class DataSaveHandler:
 
     def close(self):
         self.sender.close()
-        self.receiver.close()
+        # self.receiver.close()
 

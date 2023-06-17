@@ -72,6 +72,7 @@ public class MessageReceiver implements Runnable{
                     try {
 //                    log.info("biaoji"+String.valueOf(++i));
                         String re = new String((byte[]) ArrayUtils.toPrimitive(receiveMessage), "UTF8");
+//                        System.out.println(re);
                         if (dq.size() <= 300) {
                             dq.addFirst(re);
                         }
@@ -106,7 +107,7 @@ public class MessageReceiver implements Runnable{
 //                        messageOperator.parse_map(map);
                     } catch (Exception e) {
                         log.error("Message storage failed!\n" + e.toString());
-//                        e.printStackTrace();
+                        e.printStackTrace();
                     }
                 }
             }catch (Throwable e){

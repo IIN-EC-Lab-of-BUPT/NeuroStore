@@ -14,7 +14,7 @@ class Developer(Property):
     """
     def __init__(self):
         super(Developer, self).__init__()
-        self.content["Class"] = "DeveloperP"
+        self.content["CLASS"] = "DeveloperP"
 
     def setAccount(self,account: str):
         """

@@ -14,7 +14,7 @@ class MI(Property):
     """
     def __init__(self):
         super(MI, self).__init__()
-        self.content["Class"] = "MIP"
+        self.content["CLASS"] = "MIP"
 
     def setBodyPart(self,bodyPart: str):
         """

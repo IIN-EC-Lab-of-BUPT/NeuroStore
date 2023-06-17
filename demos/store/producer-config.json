@@ -1,0 +1,2 @@
+{"bootstrap.servers": "server:60000","debug.log.enable": "false",
+  "linger.ms": "0", "retry.limit": "3", "realtime.flush": "true"}

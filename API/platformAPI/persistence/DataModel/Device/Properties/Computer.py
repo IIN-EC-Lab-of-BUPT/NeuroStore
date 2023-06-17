@@ -14,7 +14,7 @@ class Computer(Property):
     """
     def __init__(self):
         super(Computer, self).__init__()
-        self.content["Class"] = "ComputerP"
+        self.content["CLASS"] = "ComputerP"
 
     def setCPU(self,CPU: str):
         """

@@ -14,7 +14,7 @@ class Operator(Property):
     """
     def __init__(self):
         super(Operator, self).__init__()
-        self.content["Class"] = "OperatorP"
+        self.content["CLASS"] = "OperatorP"
 
     def setJob(self,job: str):
         """

@@ -14,7 +14,7 @@ class Sensor(Property):
     """
     def __init__(self):
         super(Sensor, self).__init__()
-        self.content["Class"] = "SensorP"
+        self.content["CLASS"] = "SensorP"
 
     def setFunction(self,function: str):
         """

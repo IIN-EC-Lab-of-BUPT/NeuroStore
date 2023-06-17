@@ -15,7 +15,7 @@ class Data(DataModelInterface):
     """
     def __init__(self):
         super(Data,self).__init__()
-        self.content["Class"] = "Data"
+        self.content["CLASS"] = "Data"
 
 
     def resetDid(self,did: str):
@@ -40,8 +40,19 @@ class Data(DataModelInterface):
         :param data: bytes，数据
         :return: void
         """
-        content = base64.b64encode(data,'utf-8')
-        self.content["CONTENT"] = self.content["CONTENT"] + content
+        content = str(base64.b64encode(data),"utf-8")
+        if "content" in self.content["MajorTable"].keys():
+            self.content["MajorTable"]["content"] = self.content["MajorTable"]["content"] + content
+        else:
+            self.content["MajorTable"]["content"] = content
+
+    def setFormat(self,format: str):
+        """
+        :description: 设置文件夹格式
+        :param format: str,文件夹格式
+        :return:
+        """
+        self.content["Format"] = format
 
     def setDataType(self,datatype: str):
         """

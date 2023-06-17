@@ -13,8 +13,8 @@ from platformAPI.persistence.DataModel.RelationType import RelationType
 import json
 import uuid
 
-class DataModelInterface(object):
-    pass
+# class DataModelInterface(object):
+#     pass
 
 
 class DataModelInterface():
@@ -23,9 +23,9 @@ class DataModelInterface():
     """
     def __init__(self):
         self.content = {
-            "MajorTable":{"Did":uuid.uuid1()},
+            "MajorTable":{"Did":str(uuid.uuid1())},
             "Properties":[],
-            "Relation":{},
+            "Relation":[],
             "Action":"0"
                         }
 
@@ -36,6 +36,7 @@ class DataModelInterface():
         """
         if("Did" not in self.content["MajorTable"]):
              raise Exception("No primary key!")
+        print(self.content)
         mes_conversed = json.dumps(self.content, sort_keys=True, indent=4,
                                    separators=(',', ': '))
         return bytes(mes_conversed, encoding="utf-8")
@@ -48,33 +49,33 @@ class DataModelInterface():
         """
         self.content["Properties"].append(property.getContent())
 
-    def inRelationTo(self,dataModel: DataModelInterface):
+    def inRelationTo(self,dataModel):
         """
         :description: 用模型添加关系
         :param dataModel: DaaModelInterface,数据模型
         :return: void
         """
         relation = {
-            "Class":dataModel.content["Class"],
+            "CLASS":dataModel.content["CLASS"],
             "Did":dataModel.content["MajorTable"]["Did"],
             "Type":1
         }
         self.content["Relation"].append(relation)
 
 
-    def inRelationTo(self,dataModel: DataModelInterface,relationType: RelationType):
-        """
-        :description: 用唯一标识添加关系
-        :param dataModel: DataModelInterface，数据模型
-        :param relationType: RelationType，关系种类
-        :return: void
-        """
-        relation = {
-            "Class": dataModel.content["Class"],
-            "Did": dataModel.content["MajorTable"]["Did"],
-            "Type": relationType.value
-        }
-        self.content["Relation"].append(relation)
+    # def inRelationTo(self,dataModel: DataModelInterface,relationType: RelationType):
+    #     """
+    #     :description: 用唯一标识添加关系
+    #     :param dataModel: DataModelInterface，数据模型
+    #     :param relationType: RelationType，关系种类
+    #     :return: void
+    #     """
+    #     relation = {
+    #         "CLASS": dataModel.content["CLASS"],
+    #         "Did": dataModel.content["MajorTable"]["Did"],
+    #         "Type": relationType.value
+    #     }
+    #     self.content["Relation"].append(relation)
 
 
     # def inRelationTo(self, uuid: str,dataType: DataClass):

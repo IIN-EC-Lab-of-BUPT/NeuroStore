@@ -14,7 +14,7 @@ class EEGDataP(Property):
     """
     def __init__(self):
         super(EEGDataP, self).__init__()
-        self.content["Class"] = "TrialResult"
+        self.content["CLASS"] = "TrialResult"
 
     def setSampleFrequency(self,sampleFrequency: int):
         """

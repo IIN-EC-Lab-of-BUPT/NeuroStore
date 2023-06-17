@@ -1,14 +1,12 @@
 package bupt.embemc.operators;
 
 import bupt.embemc.operators.util.ABCCircle;
-import bupt.embemc.singleton.EntitiesMap;
 import bupt.embemc.singleton.MajorToMajorTableName;
 import bupt.embemc.singleton.TempToBaseTables;
 import bupt.embemc.utils.DbOperator;
 import bupt.embemc.utils.JSONReader;
+import bupt.embemc.utils.JsonParser;
 import bupt.embemc.utils.PreparaedStatementUpdate;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import bupt.embemc.operators.util.LRUCache;
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,6 +54,9 @@ public class MessageHandleOperator implements Runnable {
     private boolean flag2=false;
     private ResultSet resultSet;
 
+    private String[] properties;
+    private String[] relations;
+    private HashMap<String, String> majorTableMap;
 
 
 
@@ -66,6 +67,7 @@ public class MessageHandleOperator implements Runnable {
         dbOperator.connect(1,ps);
         dbOperator.connect(1,ps1);
         map=inMap;
+
 
 
 
@@ -114,29 +116,17 @@ public class MessageHandleOperator implements Runnable {
         return abstractPath;
     }
     public void proprecess() throws Exception,SQLException{
-        tableName = map.get("CLASS");
-        primaryKey = new String();
-        map.remove("CLASS");
-        String ss = new String();
-        int primaryKeyNum = 0;
-        for (String s : map.keySet()) {
-            if (s.charAt(0) == '*') {
-                primaryKey = s.substring(1);
-                ss = s;
-                primaryKeyNum++;
-                break;
-            }
-        }
-        if(primaryKeyNum != 1){
-            throw new Exception("PrimaryKey Wrong!");
-        }
-        String uuid = map.get(ss);
-        map.put(primaryKey, uuid);
-        map.remove(ss);
+        String majorTable = map.get("MajorTable");
+        majorTableMap = (HashMap<String, String>) JsonParser.toMap(majorTable);
+        properties = JsonParser.toList(map.get("Properties"));
+        relations = JsonParser.toList(map.get("Relation"));
+
+        tableName = (String) majorTableMap.get("CLASS");
+        String uuid = (String) majorTableMap.get("Did");
+
         String classUUID = tableName+uuid;
 
-
-        if (map.containsKey("content")) {
+        if (majorTableMap.containsKey("content")) {
             Map value = lruCache.get(classUUID);
             String content = map.get("content");
             if(value != null){
@@ -145,31 +135,15 @@ public class MessageHandleOperator implements Runnable {
                 q.add(content);
             }else{
                 Dbtable = new HashMap((HashMap) TempTables.get(tableName));
-
-
-//                List<String> foreignKeys = new ArrayList<String>((List<String>) Dbtable.get("FOREIGNKEYS"));
-//                String lockSql="lock tables";
-//                lockSql = lockSql + "`"+tableName+"`"+" write";
-//                for(String forignKey:foreignKeys){
-//                    String foreiTable = forignKey.split("@")[1];
-//                    lockSql = lockSql + ",`"+foreiTable+"`"+" write";
-//                }
-//                lockSql += ";";
-//                DbO.excuteSql(lockSql);
-
-
-
                 HashMap sql = new HashMap<>();
                 sql.put("CLASS", tableName);
-                sql.put(primaryKey + "#" + Dbtable.get(primaryKey), map.get(primaryKey));
+                sql.put(primaryKey + "#" + Dbtable.get("Did"), majorTableMap.get("Did"));
                 resultSet = dbOperator.select(sql,ps);
                 flag = resultSet.next();
                 flag2=true;
 
-
-
                 String filePath = "null";
-                String fileType = map.get("Format") != null ? map.get("Format") : "dat";
+                String fileType = majorTableMap.get("Format") != null ? (String)majorTableMap.get("Format") : "dat";
                 if (flag) {
                     Integer dataFilesDid = resultSet.getInt("DataFiles");
                     HashMap query_datafiles = new HashMap();
@@ -181,16 +155,12 @@ public class MessageHandleOperator implements Runnable {
                         toSave(content, fileType, filePath,classUUID);
                     }else{
                         String filePath_final = toSave(content, fileType, filePath,classUUID);
-                        map.put("Path", filePath_final);
+                        majorTableMap.put("Path", filePath_final);
                     }
                 }else{
                     String filePath_final = toSave(content, fileType, filePath,classUUID);
-                    map.put("Path", filePath_final);
+                    majorTableMap.put("Path", filePath_final);
                 }
-            }
-            map.remove("content");
-            if(map.size() < 2){
-                flag1=true;
             }
         }
 
@@ -200,123 +170,37 @@ public class MessageHandleOperator implements Runnable {
         HashMap exceptionMap = new HashMap<>(map);
         try {
             if(!flag1){
-                if(!flag2){
-                    Dbtable = new HashMap((HashMap) TempTables.get(tableName));
-
-
-                    List<String> foreignKeys = new ArrayList<String>((List<String>) Dbtable.get("FOREIGNKEYS"));
-
-
-//                    String lockSql="lock tables";
-//                    lockSql = lockSql + "`"+tableName+"`"+" write";
-//                    for(String forignKey:foreignKeys){
-//                        String foreiTable = forignKey.split("@")[1];
-//                        lockSql = lockSql + ",`"+foreiTable+"`"+" write";
-//                    }
-//                    lockSql += ";";
-//                    DbO.excuteSql(lockSql);
-
-
-                    HashMap sql = new HashMap<>();
-                    sql.put("CLASS", tableName);
-                    sql.put(primaryKey + "#" + Dbtable.get(primaryKey), map.get(primaryKey));
-                    resultSet = dbOperator.select(sql,ps);
-                    flag=resultSet.next();
+                HashMap<String ,String> majorTableSql = new HashMap<>();
+                for(String s : majorTableMap.keySet()){
+                    majorTableSql.put(s+"#CHAR(60)",majorTableMap.get(s));
                 }
-                if(flag){
-                    List<String> foreignKeys = new ArrayList<String>((List<String>) Dbtable.get("FOREIGNKEYS"));
-
-                    HashMap<String ,String> majorTales_foreignKey = new HashMap<>();
-                    for(String foreignKey: foreignKeys){
-                        if(map.get(foreignKey)!= null){
-                            if(map.get(foreignKey).equals(resultSet.getString(foreignKey))){
-
-                            }else{
-                                String foreignKeyTableName = foreignKey.split("@")[1];
-                                String foreignTablePrimaryKey = foreignKey.split("@")[0];
-
-                                HashMap sql_ForeignTable = new HashMap<>();
-                                sql_ForeignTable.put("CLASS",foreignKeyTableName);
-                                sql_ForeignTable.put(foreignTablePrimaryKey+"#"+Dbtable.get(foreignKey),map.get(foreignKey));
-                                ResultSet resultSet_ForeignTableQuery = dbOperator.select(sql_ForeignTable,ps);
-                                if(resultSet_ForeignTableQuery.next()){
-                                    Integer majorTableDid_foreignTable = resultSet_ForeignTableQuery.getInt((String) tempToBaseTables.map.get(foreignKeyTableName).get("PRIMARYTABLE"));
-
-                                    String primaryTable_foreignKey = (String) tempToBaseTables.map.get(foreignKeyTableName).get("PRIMARYTABLE");
-                                    if(majorTales_foreignKey.containsKey(primaryTable_foreignKey)){
-                                        primaryTable_foreignKey += "&*";
-                                    }
-                                    majorTales_foreignKey.put(primaryTable_foreignKey,majorTableDid_foreignTable.toString());
-                                    //update
-                                }else{
-                                    //insert
-                                    HashMap<String,String> dataMap = new HashMap<>();
-                                    dataMap.put(foreignTablePrimaryKey,map.get(foreignKey));
-                                    HashMap<String ,String> majorTaleAndDidKey_foreignKey = new HashMap<>();
-                                    Integer primaryKey_foreign=this.insert(foreignKeyTableName,dataMap,majorTaleAndDidKey_foreignKey);
-
-                                    String primaryTable_foreignKey = (String) tempToBaseTables.map.get(foreignKeyTableName).get("PRIMARYTABLE");
-                                    if(majorTales_foreignKey.containsKey(primaryTable_foreignKey)){
-                                        primaryTable_foreignKey += "&*";
-                                    }
-                                    majorTales_foreignKey.put(primaryTable_foreignKey,primaryKey_foreign.toString());
-
-                                }
-                            }
-                        }
+                dbOperator.insert(majorTableSql,ps);
+                for(String s : properties){
+                    HashMap<String,String> property = (HashMap<String, String>) JsonParser.toMap(s);
+                    HashMap<String,String> property_sql = new HashMap<>();
+                    for(String ss : property.keySet()){
+                        property_sql.put(ss+"#CHAR(60)",property.get(ss));
                     }
-                    HashMap<String,String> baseTables_tableNameAndDid = new HashMap<>();
-                    HashMap temptobase = tempToBaseTables.map.get(tableName);
-                    String majorTableName = (String) temptobase.get("PRIMARYTABLE");
-                    List<String> propertiestables =new ArrayList<>((List<String>) temptobase.get("PROPERTIESTABLES"));
-                    propertiestables.add(majorTableName);
-                    for(String s: propertiestables){
-                        baseTables_tableNameAndDid.put(s,Integer.valueOf(resultSet.getInt(s)).toString());
-                    }
-
-                    this.update(tableName,map,majorTales_foreignKey,baseTables_tableNameAndDid);
-                    //update(String tableName, HashMap<String,String> dataMap,HashMap<String ,String> majorTaleAndDidKey_foreignKey,HashMap<String,String> baseTables_tableNameAndDid)
-
-
-                }else{
-                    List<String> foreignKeys = new ArrayList<String>((List<String>) Dbtable.get("FOREIGNKEYS"));
-                    HashMap<String ,String> majorTales_foreignKey = new HashMap<>();
-                    for(String foreignKey: foreignKeys){
-                        if(map.get(foreignKey) != null){
-                            String foreignKeyTableName = foreignKey.split("@")[1];
-                            String foreignTablePrimaryKey = foreignKey.split("@")[0];
-
-                            HashMap sql_ForeignTable = new HashMap<>();
-                            sql_ForeignTable.put("CLASS",foreignKeyTableName);
-                            sql_ForeignTable.put(foreignTablePrimaryKey+"#"+Dbtable.get(foreignKey),map.get(foreignKey));
-                            ResultSet resultSet_ForeignTableQuery = dbOperator.select(sql_ForeignTable,ps);
-                            if(resultSet_ForeignTableQuery.next()){
-                                Integer majorTableDid_foreignTable = resultSet_ForeignTableQuery.getInt((String) tempToBaseTables.map.get(foreignKeyTableName).get("PRIMARYTABLE"));
-                                String primaryTable_foreignKey = (String) tempToBaseTables.map.get(foreignKeyTableName).get("PRIMARYTABLE");
-                                if(majorTales_foreignKey.containsKey(primaryTable_foreignKey)){
-                                    primaryTable_foreignKey += "&*";
-                                }
-                                majorTales_foreignKey.put(primaryTable_foreignKey,majorTableDid_foreignTable.toString());
-                                //update
-                            }else{
-                                //insert
-                                HashMap<String,String> dataMap = new HashMap<>();
-                                dataMap.put(foreignTablePrimaryKey,map.get(foreignKey));
-                                HashMap<String ,String> majorTaleAndDidKey_foreignKey = new HashMap<>();
-                                Integer primaryKey_foreign=this.insert(foreignKeyTableName,dataMap,majorTaleAndDidKey_foreignKey);
-                                String primaryTable_foreignKey = (String) tempToBaseTables.map.get(foreignKeyTableName).get("PRIMARYTABLE");
-                                if(majorTales_foreignKey.containsKey(primaryTable_foreignKey)){
-                                    primaryTable_foreignKey += "&*";
-                                }
-                                majorTales_foreignKey.put(primaryTable_foreignKey,primaryKey_foreign.toString());
-
-                            }
-                        }
-                    }
-
-                    //insert
-                    this.insert(tableName,map,majorTales_foreignKey);
+                    dbOperator.insert(property_sql,ps);
+                    HashMap<String,String> major_property = new HashMap<>();
+                    major_property.put("CLASS",majorTableMap.get("CLASS")+"_"+property.get("CLASS"));
+                    major_property.put(majorTableMap.get("CLASS")+"#CHAR(60)",majorTableMap.get("Did"));
+                    major_property.put(property.get("CLASS")+"#CHAR(60)",property.get("Did"));
+                    dbOperator.insert(major_property,ps);
                 }
+                for(String s : relations){
+                    HashMap<String,String> relation = (HashMap<String, String>) JsonParser.toMap(s);
+                    HashMap<String, String> relation_sql = new HashMap<>();
+
+                    relation_sql.put("CLASS"+"#CHAR(60)",majorToMajorTableName.arrayMap[majorToMajorTableName.map.get(majorTableMap.get("CLASS"))][majorToMajorTableName.map.get(relation.get("CLASS"))]);
+                    relation_sql.put(majorTableMap.get("CLASS")+"#CHAR(60)",majorTableMap.get("Did"));
+                    relation_sql.put(relation.get("CLASS"),relation.get("Did"));
+                    dbOperator.insert(relation_sql,ps);
+
+                }
+
+
+
             }
 
 
@@ -369,145 +253,6 @@ public class MessageHandleOperator implements Runnable {
 //        i++;
 //        log.info("done"+i);
 
-    }
-    //dataMap 是原版数据，主键带* //tableName:要更新temp表名；  dataMap：消息体，没有“CLASS”，没有 * ；  majorTaleAndDidKey_foreignKey：外键表的主表名和Did；
-    private int insert(String tableName, HashMap<String,String> dataMap,HashMap<String ,String> majorTaleAndDidKey_foreignKey) throws SQLException{
-        String majorTableName = (String)tempToBaseTables.map.get(tableName).get("PRIMARYTABLE");
-
-        HashMap sql_tempTable = new HashMap();
-        sql_tempTable.put("CLASS",tableName);
-
-        HashMap tempTable = new HashMap((HashMap) TempTables.get(tableName));
-
-        String primaryKey = (String) tempTable.get("PRIMARYKEY");
-        List<String> foreignKeys = new ArrayList<String>((List<String>) tempTable.get("FOREIGNKEYS"));
-        sql_tempTable.put(primaryKey+"#"+tempTable.get(primaryKey), dataMap.get(primaryKey));
-        for(String s: foreignKeys){
-            if(dataMap.get(s) != null){
-                sql_tempTable.put(s+"#"+tempTable.get(s),dataMap.get(s));
-            }
-        }
-
-
-        HashMap<String, String> baseTable = new HashMap((HashMap)BaseTables.get(majorTableName));
-        baseTable.remove("COMMENT");
-        HashMap sql_majorTable = new HashMap();
-        sql_majorTable.put("CLASS",majorTableName);
-        for(String s:  baseTable.keySet()){
-            String dataValue = dataMap.get(s);
-            if(dataValue != null){
-                sql_majorTable.put(s+"#"+baseTable.get(s), dataValue);
-            }
-        }
-        //majorTable
-        Integer primaryKey_majorTable = dbOperator.insert(sql_majorTable,ps1);
-        sql_tempTable.put(majorTableName+"#"+"INT", primaryKey_majorTable.toString());
-
-        List<String> propertiesTables = new ArrayList<>((List<String>) tempToBaseTables.map.get(tableName).get("PROPERTIESTABLES"));
-        for(String s : propertiesTables){
-            HashMap<String,String> baseTable_temp = new HashMap((HashMap) BaseTables.get(s));
-            baseTable_temp.remove("COMMENT");
-            HashMap sql_propertiesTable = new HashMap();
-            sql_propertiesTable.put("CLASS",s);
-            for(String s1 : baseTable_temp.keySet()){
-                String dateValue_temp = dataMap.get(s1);
-                if(dateValue_temp != null){
-                    sql_propertiesTable.put(s1+"#"+baseTable_temp.get(s1), dateValue_temp);
-                }
-            }
-            //PropertiesTables
-            Integer primaryKey_propertiesTable = dbOperator.insert(sql_propertiesTable,ps1);
-            sql_tempTable.put(s+"#"+"INT", primaryKey_propertiesTable.toString());
-
-            HashMap<String,String> sql_majorPropertiesRelation = new HashMap();
-            sql_majorPropertiesRelation.put("CLASS",majorTableName+"_"+s);
-            sql_majorPropertiesRelation.put(majorTableName+"Did#INT",primaryKey_majorTable.toString());
-            sql_majorPropertiesRelation.put(s+"Did#INT",primaryKey_propertiesTable.toString());
-
-            //major to perpertiesTables relation
-            dbOperator.insert(sql_majorPropertiesRelation,ps1);
-        }
-
-        //tempTable
-        dbOperator.insert(sql_tempTable,ps);
-
-        List<String> types = new ArrayList<>((List<String>) APImap.get("APIType").get(tableName));
-        for(String s1: types){
-            HashMap sql_majorToType = new HashMap();
-            sql_majorToType.put("CLASS", majorTableName+"_"+majorTableName+"Types");
-            sql_majorToType.put(majorTableName+"Did#INT",primaryKey_majorTable.toString());
-            sql_majorToType.put(majorTableName+"TypesDid#INT",s1);
-
-            //major to types relation
-            dbOperator.insert(sql_majorToType,ps1);
-        }
-        for(String s:majorTaleAndDidKey_foreignKey.keySet()){
-            HashMap sql_majorToMajorRelation = new HashMap();
-            String primaryKey_foreignTable = majorTaleAndDidKey_foreignKey.get(s);
-            s = s.split("&")[0];
-            sql_majorToMajorRelation.put("CLASS",majorToMajorTableName.arrayMap[majorToMajorTableName.map.get(majorTableName)][majorToMajorTableName.map.get(s)]);
-            if(s.equals(majorTableName)){
-                sql_majorToMajorRelation.put("Subject"+majorTableName+"Did#INT", primaryKey_majorTable.toString());
-                sql_majorToMajorRelation.put("Object"+s+"Did#INT",primaryKey_foreignTable);
-            }else{
-                sql_majorToMajorRelation.put(majorTableName+"Did#INT", primaryKey_majorTable.toString());
-                sql_majorToMajorRelation.put(s+"Did#INT",primaryKey_foreignTable);
-            }
-            //major to major relation
-            dbOperator.insert(sql_majorToMajorRelation,ps1);
-        }
-        return primaryKey_majorTable;
-    }
-    //tableName:要更新temp表名；  dataMap：消息体，没有“CLASS”，没有 * ；  majorTaleAndDidKey_foreignKey：外键表的主表名和Did； baseTables_tableNameAndDid：基础表的tableName和Did
-    private void update(String tableName, HashMap<String,String> dataMap,HashMap<String ,String> majorTaleAndDidKey_foreignKey,HashMap<String,String> baseTables_tableNameAndDid) throws SQLException{
-        HashMap sql_tempTable = new HashMap();
-        sql_tempTable.put("CLASS",tableName);
-        HashMap tempTable = new HashMap((HashMap) TempTables.get(tableName));
-        String primaryKey = (String) tempTable.get("PRIMARYKEY");
-        String[][] condition = {{primaryKey+"#"+tempTable.get(primaryKey),"=",dataMap.get(primaryKey)}};
-        sql_tempTable.put("CONDITION",condition);
-
-        List<String> foreignKeys = new ArrayList<>((List<String>) tempTable.get("FOREIGNKEYS"));
-        sql_tempTable.put(primaryKey+"#"+tempTable.get(primaryKey), dataMap.get(primaryKey));
-        for(String s: foreignKeys){
-            if(dataMap.get(s) != null){
-                sql_tempTable.put(s+"#"+tempTable.get(s),dataMap.get(s));
-            }
-        }
-        dbOperator.update(sql_tempTable,ps);
-
-        String majorTableName = (String)tempToBaseTables.map.get(tableName).get("PRIMARYTABLE");
-        for(String s:majorTaleAndDidKey_foreignKey.keySet()) {
-            String primaryKey_foreignTable = majorTaleAndDidKey_foreignKey.get(s);
-            s = s.split("&")[0];
-            HashMap sql_majorToMajorRelation = new HashMap();
-            sql_majorToMajorRelation.put("CLASS", majorToMajorTableName.arrayMap[majorToMajorTableName.map.get(majorTableName)][majorToMajorTableName.map.get(s)]);
-            if(s.equals(majorTableName)){
-                sql_majorToMajorRelation.put("Subject"+majorTableName+"Did#INT", baseTables_tableNameAndDid.get(majorTableName));
-                sql_majorToMajorRelation.put("Object"+s+"Did#INT",primaryKey_foreignTable);
-            }else{
-                sql_majorToMajorRelation.put(majorTableName+"Did#INT", baseTables_tableNameAndDid.get(majorTableName));
-                sql_majorToMajorRelation.put(s+"Did#INT",primaryKey_foreignTable);
-            }
-
-            //major to major relation
-            dbOperator.insert(sql_majorToMajorRelation,ps1);
-        }
-
-        for(String s: baseTables_tableNameAndDid.keySet()){
-            HashMap sql_baseTables = new HashMap();
-            sql_baseTables.put("CLASS",s);
-            String[][] condition_baseTables = {{"Did#INT","=",baseTables_tableNameAndDid.get(s)}};
-            sql_baseTables.put("CONDITION",condition_baseTables);
-            HashMap<String,String> baseTable = new HashMap((HashMap) BaseTables.get(s));
-            baseTable.remove("COMMENT");
-            for(String s1: baseTable.keySet()){
-                if(dataMap.get(s1) != null){
-                    sql_baseTables.put(s1+"#"+baseTable.get(s1),dataMap.get(s1));
-                }
-            }
-            dbOperator.update(sql_baseTables,ps1);
-        }
     }
 
 

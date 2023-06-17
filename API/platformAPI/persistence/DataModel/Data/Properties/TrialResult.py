@@ -14,7 +14,7 @@ class TrialResult(Property):
     """
     def __init__(self):
         super(TrialResult, self).__init__()
-        self.content["Class"] = "TrialResult"
+        self.content["CLASS"] = "TrialResult"
 
     def setResultNum(self,resultNum: str):
         """

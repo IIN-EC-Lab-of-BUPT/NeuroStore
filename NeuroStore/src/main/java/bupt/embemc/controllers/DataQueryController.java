@@ -47,26 +47,26 @@ public class DataQueryController {
         preparaedStatementUpdate.disconnect();
         return list;
     }
-    @RequestMapping("/channel/{channel}")
-    public List dataForChannel(@PathVariable("channel") String channel) throws SQLException, IOException, ClassNotFoundException {
-
-        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
-        preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("DataP", "channel", channel, preparaedStatementUpdate);
-        List list = parse(result);
-        preparaedStatementUpdate.disconnect();
-        return list;
-    }
-    @RequestMapping("/channelNum/{channelNum}")
-    public List dataForChannelNum(@PathVariable("channelNum") String channelNum) throws SQLException, IOException, ClassNotFoundException {
-
-        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
-        preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("EEGDataP", "ClumnNum", channelNum, preparaedStatementUpdate);
-        List list = parse(result);
-        preparaedStatementUpdate.disconnect();
-        return list;
-    }
+//    @RequestMapping("/channel/{channel}")
+//    public List dataForChannel(@PathVariable("channel") String channel) throws SQLException, IOException, ClassNotFoundException {
+//
+//        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
+//        preparaedStatementUpdate.connect(true,0);
+//        ResultSet result = DbOperator.select("DataP", "channel", channel, preparaedStatementUpdate);
+//        List list = parse(result);
+//        preparaedStatementUpdate.disconnect();
+//        return list;
+//    }
+//    @RequestMapping("/channelNum/{channelNum}")
+//    public List dataForChannelNum(@PathVariable("channelNum") String channelNum) throws SQLException, IOException, ClassNotFoundException {
+//
+//        PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
+//        preparaedStatementUpdate.connect(true,0);
+//        ResultSet result = DbOperator.select("EEGDataP", "ClumnNum", channelNum, preparaedStatementUpdate);
+//        List list = parse(result);
+//        preparaedStatementUpdate.disconnect();
+//        return list;
+//    }
     @RequestMapping("/process/{processDid}")
     public List dataForProcess(@PathVariable("processDid") String processDid) throws SQLException, IOException, ClassNotFoundException {
 

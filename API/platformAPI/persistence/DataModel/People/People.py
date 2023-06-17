@@ -14,7 +14,7 @@ class People(DataModelInterface):
     """
     def __init__(self):
         super(People,self).__init__()
-        self.content["Class"] = "Paradigms"
+        self.content["CLASS"] = "People"
 
     def resetDid(self,did: str):
         """

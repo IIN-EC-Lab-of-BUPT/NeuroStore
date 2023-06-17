@@ -43,7 +43,7 @@ public class ProcessQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("ProcessP", "result","Did",processDid ,preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("TrialP", "result","Did",processDid ,preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;
@@ -54,7 +54,7 @@ public class ProcessQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("ProcessP", "Did","description",content ,preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("Processes", "Did","description",content ,preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;

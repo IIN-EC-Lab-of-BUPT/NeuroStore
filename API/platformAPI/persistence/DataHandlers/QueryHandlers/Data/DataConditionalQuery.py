@@ -26,22 +26,22 @@ class DataConditionalQuery:
         r = self.requester.persistence_get(getStr)
         return r
 
-    def dataForChannel(self,channel):
-        """
-        :description: 查找含有指定信道的数据
-        :param channel: str，信道
-        :return: ResultModel，含有指定信道的数据
-        """
-        getStr = "/query/data/channel/{}".format(channel)
-        r = self.requester.persistence_get(getStr)
-        return r
+    # def dataForChannel(self,channel):
+    #     """
+    #     :description: 查找含有指定信道的数据
+    #     :param channel: str，信道
+    #     :return: ResultModel，含有指定信道的数据
+    #     """
+    #     getStr = "/query/data/channel/{}".format(channel)
+    #     r = self.requester.persistence_get(getStr)
+    #     return r
 
-    def dataForChannelNum(self,channelNum):
-        """
-        :description: 查找指定信道数的的数据
-        :param channelNum: int，信道数
-        :return: ResultModel，指定信道数的的数据
-        """
-        getStr = "/query/data/channelNum/{}".format(channelNum)
-        r = self.requester.persistence_get(getStr)
-        return r
+    # def dataForChannelNum(self,channelNum):
+    #     """
+    #     :description: 查找指定信道数的的数据
+    #     :param channelNum: int，信道数
+    #     :return: ResultModel，指定信道数的的数据
+    #     """
+    #     getStr = "/query/data/channelNum/{}".format(channelNum)
+    #     r = self.requester.persistence_get(getStr)
+    #     return r

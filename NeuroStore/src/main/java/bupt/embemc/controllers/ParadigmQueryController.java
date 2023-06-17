@@ -33,7 +33,7 @@ public class ParadigmQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("ParadigmP", "type", type, preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("ParadigmTypes", "type", type, preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;
@@ -43,7 +43,7 @@ public class ParadigmQueryController {
 
         PreparaedStatementUpdate preparaedStatementUpdate = new PreparaedStatementUpdate();
         preparaedStatementUpdate.connect(true,0);
-        ResultSet result = DbOperator.select("ParadigmP", "description", content, preparaedStatementUpdate);
+        ResultSet result = DbOperator.select("Paradigms", "description", content, preparaedStatementUpdate);
         List list = parse(result);
         preparaedStatementUpdate.disconnect();
         return list;

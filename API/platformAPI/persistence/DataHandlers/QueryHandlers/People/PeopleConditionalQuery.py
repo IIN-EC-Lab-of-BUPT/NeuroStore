@@ -37,34 +37,34 @@ class PeopleConditionalQuery:
         r = self.requester.get(getStr)
         return r
 
-    def PeopleForWeight(self,Weight):
-        """
-        :description: 查找指定体重的人员
-        :param Weight: int，体重
-        :return: ResultModel，指定体重的人员信息
-        """
-
-        getStr = "/query/Weight/{}".format(Weight)
-        r = self.requester.get(getStr)
-        return r
-
-    def PeopleForHight(self,Hight):
-        """
-        :description: 查找指定身高的人员
-        :param Hight: int，身高
-        :return: ResultModel，指定身高的人员信息
-        """
-
-        getStr = "/query/Hight/{}".format(Hight)
-        r = self.requester.get(getStr)
-        return r
-
-    def PeopleForLefthandedness(self,Lefthandedness):
-        """
-        :description: 查找是否左利手的人员
-        :param Lefthandedness: bool，是否左利手
-        :return: ResultModel，是否左利手的人员信息
-        """
-        getStr = "/query/Lefthandedness/{}".format(Lefthandedness)
-        r = self.requester.get(getStr)
-        return r
+    # def PeopleForWeight(self,Weight):
+    #     """
+    #     :description: 查找指定体重的人员
+    #     :param Weight: int，体重
+    #     :return: ResultModel，指定体重的人员信息
+    #     """
+    #
+    #     getStr = "/query/Weight/{}".format(Weight)
+    #     r = self.requester.get(getStr)
+    #     return r
+    #
+    # def PeopleForHight(self,Hight):
+    #     """
+    #     :description: 查找指定身高的人员
+    #     :param Hight: int，身高
+    #     :return: ResultModel，指定身高的人员信息
+    #     """
+    #
+    #     getStr = "/query/Hight/{}".format(Hight)
+    #     r = self.requester.get(getStr)
+    #     return r
+    #
+    # def PeopleForLefthandedness(self,Lefthandedness):
+    #     """
+    #     :description: 查找是否左利手的人员
+    #     :param Lefthandedness: bool，是否左利手
+    #     :return: ResultModel，是否左利手的人员信息
+    #     """
+    #     getStr = "/query/Lefthandedness/{}".format(Lefthandedness)
+    #     r = self.requester.get(getStr)
+    #     return r
